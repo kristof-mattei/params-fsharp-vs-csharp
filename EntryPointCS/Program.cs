@@ -1,16 +1,26 @@
 ﻿namespace EntryPointCS
 {
+    using System;
+    using System.Diagnostics;
     using Lib;
 
     class Program
     {
         static void Main(string[] args)
         {
-            var bar1 = new Bar();
-            var bar2 = new Bar();
+            object bar1 = null;
+            object bar2 = null;
 
-            var asParams = Test.TestMethod(bar1, bar2);
-            var asArray = Test.TestMethod(new Bar[] { bar1, bar2 });
+            var lengthAsParam = Test.TestMethod(bar1, bar2);
+            var lengthAsArray = Test.TestMethod(new object[] { bar1, bar2 });
+
+            var condition = lengthAsParam == lengthAsArray;
+
+            Debug.Assert(condition);
+
+            Console.WriteLine(condition);
+
+            Console.ReadLine();
         }
     }
 }
